@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: watch-party-app
+    env: node
+    plan: free
+    buildCommand: |
+      npm install --prefix server
+      npm install --prefix client
+      npm run build --prefix client
+    startCommand: npm --prefix server start
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: CLIENT_ORIGIN
+        value: "*"
